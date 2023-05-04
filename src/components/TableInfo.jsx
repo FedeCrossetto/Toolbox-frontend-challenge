@@ -29,7 +29,6 @@ export const TableInfo = () => {
           .then(res => SetFiles(res))
       }
       getTest()
-      console.log('files', files)
     }
   }, [selectedFile])
 
@@ -40,7 +39,7 @@ export const TableInfo = () => {
       onChange={(e) => setSelectedFile(e.target.value)}
     >
       <option value="" hidden>
-        Selecciona un archivo
+        Select a file
       </option>
       {list.map((file, index) => (
         <option key={index}>{file}</option>
