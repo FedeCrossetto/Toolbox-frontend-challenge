@@ -1,11 +1,11 @@
 import { Title } from './components/Title'
-import { TableInfo } from './components/TableInfo'
+import { DataTable } from './components/DataTable'
 
 function App() {
   return (
     <>
       <Title />
-      <TableInfo />
+      <DataTable />
     </>
   )
 }
