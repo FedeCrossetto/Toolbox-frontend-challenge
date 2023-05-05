@@ -1,36 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import Table from 'react-bootstrap/Table';
-import Form from 'react-bootstrap/Form';
+import Table from 'react-bootstrap/Table'
+import { getList, getFileData } from '../services/api'
+import Form from 'react-bootstrap/Form'
 
 export const TableInfo = () => {
 
-  const [list, SetList] = useState([]);
-  const [files, SetFiles] = useState([]);
+  const [list, setList] = useState([]);
+  const [files, setFiles] = useState([]);
   const [selectedFile, setSelectedFile] = useState('');
 
   //Para obtener la lista de archivos 
   useEffect(() => {
-    const getTest = () => {
-      fetch('http://localhost:3000/files/list')
-        .then(res => res.json())
-        .then(res => SetList(res.files))
-    }
-    getTest()
-  }, [])
+    getList()
+      .then(res => setList(res.files))
+      .catch(err => console.error(err));
+  }, []);
 
   //Para obtener el archivo seleccionado de la lista.
   useEffect(() => {
     if (selectedFile) {
-      SetFiles([])
-      const regex = /\d+/;
-      const getTest = () => {
-        fetch(`http://localhost:3000/files/data?fileName=${selectedFile.match(regex)}`)
-          .then(res => res.json())
-          .then(res => SetFiles(res))
-      }
-      getTest()
+      setFiles([]);
+      getFileData(selectedFile)
+        .then(res => setFiles(res))
+        .catch(err => console.error(err));
     }
-  }, [selectedFile])
+  }, [selectedFile]);
 
   return (<>
     <Form.Select
@@ -55,7 +49,7 @@ export const TableInfo = () => {
         </tr>
       </thead>
       <tbody>
-        {(files.length != 0) ?
+        {(files.length) ?
           files.slice(1).map((x, index) =>
           (
             <tr style={{ textAlign: 'left' }}

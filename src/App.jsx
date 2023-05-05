@@ -1,12 +1,11 @@
-import { useState } from 'react'
 import { Title } from './components/Title'
-import { TableInfo } from './components/TableInfo';
+import { TableInfo } from './components/TableInfo'
 
 function App() {
   return (
-    <>  
-      <Title/>
-      <TableInfo/>
+    <>
+      <Title />
+      <TableInfo />
     </>
   )
 }
