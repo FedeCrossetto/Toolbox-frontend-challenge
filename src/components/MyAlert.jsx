@@ -17,5 +17,4 @@ const MyAlert = ({ errorMsg, onClose, showAlert, setShowAlert }) => {
     )
   );
 };
-
 export default MyAlert;

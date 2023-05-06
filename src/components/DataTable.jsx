@@ -11,7 +11,7 @@ const tableStyle = {
   marginTop: 24,
 };
 
-export const DataTable = () => {
+const DataTable = () => {
   const [list, setList] = useState([]);
   const [files, setFiles] = useState([]);
   const [selectedFile, setSelectedFile] = useState('');
@@ -23,9 +23,10 @@ export const DataTable = () => {
     getListService()
       .then((res) => setList(res.files))
       .catch((err) => {
-        console.error(err);
-        setErrorMsg('Error fetching file list');
-        setShowAlert(true);
+        if (err) {
+          setErrorMsg('Error fetching file list');
+          setShowAlert(true);
+        }
       });
   }, []);
 
@@ -50,25 +51,28 @@ export const DataTable = () => {
         list={list}
         setSelectedFile={setSelectedFile}
       />
-      <Table striped bordered hover size="sm" style={tableStyle}>
+      <Table data-testid="data-table" striped bordered hover size="sm" style={tableStyle}>
         <thead>
-          <tr style={{ textAlign: 'left' }}>
-            <th>File Name</th>
-            <th>Text</th>
-            <th>Number</th>
-            <th>Hex</th>
+          <tr data-testid="data-table-header-row">
+            <th data-testid="column-File Name">File Name</th>
+            <th data-testid="column-Text">Text</th>
+            <th data-testid="column-Number">Number</th>
+            <th data-testid="column-Hex">Hex</th>
           </tr>
         </thead>
         <tbody>
-          {files.length > 0 ? (
-            files.slice(1).map((x, index) => (
-              <tr style={{ textAlign: 'left' }} key={index}>
-                <td>{x.file}</td>
-                <td>{x.text}</td>
-                <td>{x.number}</td>
-                <td>{x.hex}</td>
-              </tr>
-            ))
+          {files[0] ? (
+            files.map((x, index) => {
+              if (index === 0) return null; // omitir el primer elemento
+              return (
+                <tr style={{ textAlign: 'left' }} key={index}>
+                  <td>{x.file}</td>
+                  <td>{x.text}</td>
+                  <td>{x.number}</td>
+                  <td>{x.hex}</td>
+                </tr>
+              );
+            })
           ) : (
             <tr>
               <td colSpan="4">Table empty</td>
@@ -81,3 +85,4 @@ export const DataTable = () => {
     </>
   );
 };
+export default DataTable;

@@ -1,5 +1,5 @@
-import { Title } from './components/Title'
-import { DataTable } from './components/DataTable'
+import  Title from './components/Title'
+import  DataTable  from './components/DataTable'
 
 function App() {
   return (
@@ -9,5 +9,4 @@ function App() {
     </>
   )
 }
-
-export default App
+export default App;

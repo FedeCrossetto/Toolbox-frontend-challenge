@@ -8,7 +8,7 @@ const titleStyle = {
     marginBottom: '16px'
 };
 
-export const Title = () => {
+const Title = () => {
     return (
         <>
             <Container  fluid style={titleStyle}>
@@ -17,3 +17,4 @@ export const Title = () => {
         </>
     );
 }
+export default Title;

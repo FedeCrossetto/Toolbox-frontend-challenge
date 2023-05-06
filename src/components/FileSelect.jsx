@@ -17,5 +17,4 @@ const FileSelect = ({ list, selectedFile, setSelectedFile }) => {
     </Form.Select>
   );
 };
-
 export default FileSelect;
