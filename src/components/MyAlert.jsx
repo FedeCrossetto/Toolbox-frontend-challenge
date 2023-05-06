@@ -5,19 +5,14 @@ const alertStyle = {
   width: '90%',
   margin: 'auto',
   marginTop: 24,
-  opacity : '80%'
+  opacity: '80%',
 };
 
-const MyAlert = ({ showAlert, setShowAlert }) => {
+const MyAlert = ({ errorMsg, onClose, showAlert, setShowAlert }) => {
   return (
-    showAlert && (
-      <Alert
-        variant="danger"
-        style={alertStyle}
-        onClose={() => setShowAlert(false)}
-        dismissible
-      >
-        <p>The selected file does not contain information.</p>
+    errorMsg && (
+      <Alert variant="danger" style={alertStyle} onClose={onClose} dismissible show={showAlert}>
+        <p>{errorMsg}</p>
       </Alert>
     )
   );

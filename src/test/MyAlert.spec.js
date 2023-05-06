@@ -5,23 +5,24 @@ import MyAlert from '../components/MyAlert';
 
 describe('MyAlert component', () => {
   test('renders correctly', () => {
-    const { container } = render(<MyAlert showAlert={true} setShowAlert={() => {}} />);
+    const { container } = render(<MyAlert errorMsg="Error message" onClose={() => {}} />);
     expect(container).toMatchSnapshot();
   });
 
-  test('shows alert message', () => {
-    const setShowAlert = jest.fn();
-    const { getByText, getByRole } = render(<MyAlert showAlert={true} setShowAlert={setShowAlert} />);
+  test('displays error message', () => {
+    const onClose = jest.fn();
+    const { getByText, getByRole } = render(<MyAlert errorMsg="Error message" onClose={onClose} />);
 
     const closeButton = getByRole('button');
     fireEvent.click(closeButton);
 
-    expect(setShowAlert).toHaveBeenCalledWith(false);
-    expect(getByText('The selected file does not contain information.')).toBeInTheDocument();
+    expect(onClose).toHaveBeenCalledTimes(1);
+    expect(getByText('Error message')).toBeInTheDocument();
+    expect(getByRole('alert')).toHaveClass('alert-danger');
   });
 
-  test('does not show alert message', () => {
-    const { queryByText } = render(<MyAlert showAlert={false} setShowAlert={() => {}} />);
-    expect(queryByText('The selected file does not contain information.')).toBeNull();
+  test('does not display error message', () => {
+    const { queryByText } = render(<MyAlert errorMsg={null} onClose={() => {}} />);
+    expect(queryByText('Error message')).toBeNull();
   });
 });

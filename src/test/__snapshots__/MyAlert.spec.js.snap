@@ -13,7 +13,7 @@ exports[`MyAlert component renders correctly 1`] = `
       type="button"
     />
     <p>
-      The selected file does not contain information.
+      Error message
     </p>
   </div>
 </div>
