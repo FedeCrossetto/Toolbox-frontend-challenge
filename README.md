@@ -1,8 +1,7 @@
 ## ⚡ Toolbox Challenge Frontend.
 
 ### Enunciado : 
-[Ver documento PDF](src/assets/nombre_del_archivo.pdf)
-
+[Ver documento PDF](https://cs1.ssltrust.me/s/YeaQjE8XFljaMxv)
 
 ### Como levantar proyecto :
 * Clonar proyecto.
