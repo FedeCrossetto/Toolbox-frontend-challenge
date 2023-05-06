@@ -4,6 +4,12 @@ import { getList, getFileData } from '../services/api';
 import FileSelect from './FileSelect';
 import MyAlert from './MyAlert';
 
+const tableStyle = {
+  width: '90%',
+  margin: 'auto',
+  textAlign: 'center',
+  marginTop: 24
+};
 
 export const DataTable = () => {
   const [list, setList] = useState([]);
@@ -40,7 +46,7 @@ export const DataTable = () => {
       list={list}
       setSelectedFile={setSelectedFile}
     />}
-    <Table striped bordered hover size="sm" style={{ width: '90%', margin: 'auto', textAlign: 'center', marginTop: 24 }}>
+    <Table striped bordered hover size="sm" style={tableStyle}>
       <thead>
         <tr style={{ textAlign: 'left' }}>
           <th>File Name</th>
@@ -50,9 +56,8 @@ export const DataTable = () => {
         </tr>
       </thead>
       <tbody>
-        {(files.length) ?
+        {(files.length > 0) ?
           files.slice(1).map((x, index) =>
-          (
             <tr style={{ textAlign: 'left' }}
               key={index}>
               <td>{x.file}</td>
@@ -60,7 +65,6 @@ export const DataTable = () => {
               <td>{x.number}</td>
               <td>{x.hex}</td>
             </tr>
-          )
           ) :
           <tr >
             <td colSpan="4">Table empty</td>
